@@ -13,28 +13,6 @@ app.get('/', (req, res) => {
     res.sendFile(filePath);
 });
 
-app.get('/authors', (req, res) => {
-    var mysql = require('mysql');
-    var conn = mysql.createConnection({
-        host: 'localhost', // Replace with your host name
-        user: 'root',      // Replace with your database username
-        password: '',      // Replace with your database password
-        database: 'newdb' // // Replace with your database Name
-      }); 
-      conn.connect(function(err) {
-        if (err) throw err;
-        console.log('Database is connected successfully !');
-      });
-      var sql='SELECT * FROM authors';
-      conn.query(sql, function(err, result,fields) {
-        if(err) throw err;
-        console.log(result);
-        var data = JSON.stringify(result);
-        res.writeHead(200);
-        res.end(data);
-      });
-});
-
 app.get('/users', (req, res) => {
     var mysql = require('mysql');
     var conn = mysql.createConnection({
